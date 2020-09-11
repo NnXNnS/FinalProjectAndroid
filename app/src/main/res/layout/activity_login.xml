@@ -4,7 +4,6 @@
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_light"
     tools:context="com.bcaf.ivan.finalprojectandroid.Controller.LoginActivity">
 
 
@@ -21,59 +20,65 @@
             android:layout_gravity="center"
             android:fontFamily="sans-serif"
             android:text="LOGIN"
-            android:textColor="#fff"
-            android:textSize="24sp" />
+            android:textSize="30sp"
+            android:layout_marginBottom="20dp"/>
 
-        <EditText
-            android:id="@+id/inp_email"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:padding="8dp"
-            android:textColor="#80FFFFFF"
-            android:textColorHint="#80FFFFFF" />
+            android:id="@+id/lyt_emailInput"
+            android:layout_margin="5dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/inp_email"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:textColorHint="@android:color/holo_blue_light"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/inp_password"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:padding="8dp"
-            android:textColor="#80FFFFFF"
-            android:textColorHint="#80FFFFFF" />
+            android:id="@+id/lyt_passwordInput"
+            android:layout_margin="5dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/inp_password"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textColorHint="@android:color/holo_blue_light"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/btnLogin"
+        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="#3F51B5"
-            android:clickable="true"
+            android:id="@+id/btn_login"
+            android:text="Sign In"
             android:onClick="loginClick"
-            android:text="LOG IN"
-            android:textColor="#FFF" />
+            android:layout_margin="5dp"
+            android:clickable="true"
+            android:focusable="true"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="8dp"
+            android:layout_margin="8dp"
             android:fontFamily="cursive"
-            android:text="OR"
-            android:textColor="#FFF" />
+            android:text="OR"/>
 
-        <Button
-            android:id="@+id/btnRegister"
+        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="#3F51B5"
+            android:id="@+id/btn_register"
+            android:text="Sign Up"
             android:onClick="registerClick"
-            android:text="REGISTER"
-            android:textColor="#FFF" />
+            android:layout_margin="5dp"
+            android:clickable="true"
+            android:focusable="true"/>
     </LinearLayout>
 </RelativeLayout>

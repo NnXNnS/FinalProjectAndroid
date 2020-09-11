@@ -17,15 +17,18 @@ class SplashActivity: Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        var logo=findViewById<ImageView>(R.id.ic_logo)
+        // region splash screen animation fade in
+        /*var logo=findViewById<ImageView>(R.id.ic_logo)
         val animation = AnimationUtils.loadAnimation(this@SplashActivity, R.anim.fade_in)
-        logo.startAnimation(animation)
+        logo.startAnimation(animation)*/
+        // endregion
+
         handler = Handler()
         handler.postDelayed({
             val intent = Intent(this@SplashActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
-        }, 5000)
+        }, 2000L)
 
     }
 }

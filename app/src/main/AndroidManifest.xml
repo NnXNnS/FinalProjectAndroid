@@ -11,10 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Controller.LandingPageActivity"></activity>
+        <activity android:name=".Controller.LandingPageActivity">
+
+        </activity>
         <activity
             android:name=".Controller.SplashActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:theme="@style/NoTopBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,10 +26,14 @@
         </activity>
         <activity
             android:name=".Controller.LoginActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name"
+            android:theme="@style/NoTopBar">
+        </activity>
         <activity
             android:name=".Controller.RegisterActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name">
+
+        </activity>
     </application>
 
 </manifest>
