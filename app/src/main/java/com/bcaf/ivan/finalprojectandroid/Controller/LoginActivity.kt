@@ -63,30 +63,36 @@ class LoginActivity : AppCompatActivity() {
                 MediaType.parse("text/plain"),
                 password
             )
-            UserUtil().getUser().login(emailBody, passwordBody)
-                .enqueue(object : Callback<String> {
-                    override fun onFailure(call: Call<String>, t: Throwable) {
-                        Log.d("Failed", "Failed Login")
-                        Toast.makeText(
-                            this@LoginActivity,
-                            "Wrong email or password!",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
 
-                    override fun onResponse(call: Call<String>, response: Response<String>) {
-                        var rs = response.body()!!.toString()
-                        Log.d("Result", rs)
-                        val t = JWT.decode(rs, jsonDecoder, decoder)
-                        Log.d("Result token", t!!.payload.iss)
-
-//                Toast.makeText(this@LoginActivity,response.body(),Toast.LENGTH_LONG).show()
-                    }
-                })
+            userLogin(emailBody,passwordBody)
         } else {
-            Toast.makeText(this,"email not valid!",Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "email not valid!", Toast.LENGTH_LONG).show()
         }
+    }
 
+    fun userLogin(emailBody: RequestBody, passwordBody: RequestBody) {
+        UserUtil().getUser().login(emailBody, passwordBody)
+            .enqueue(object : Callback<String> {
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                    Toast.makeText(
+                        this@LoginActivity,
+                        "Wrong email or password!",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+
+                override fun onResponse(call: Call<String>, response: Response<String>) {
+                    var rs = response.body()!!.toString()
+                    val t = JWT.decode(rs, jsonDecoder, decoder)
+                    startActivity(
+                        Intent(
+                            applicationContext,
+                            LandingPageActivity::class.java
+                        ).putExtra("tokenResult", t!!.payload.iss)
+                    )
+
+                }
+            })
     }
 
     fun emailValidation(email: String): Boolean {
