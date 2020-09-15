@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/tab_one"
+        android:title="One"
+        android:enabled="true"/>
+
+    <item
+        android:id="@+id/tab_two"
+        android:title="Two"/>
+
+    <item
+        android:id="@+id/tab_three"
+        android:title="Three"/>
+</menu>

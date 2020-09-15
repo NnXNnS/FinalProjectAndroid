@@ -3,6 +3,8 @@
     package="com.bcaf.ivan.finalprojectandroid">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -10,10 +12,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".Controller.LandingPageActivity">
-
-        </activity>
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ListBusActivity"></activity>
+        <activity android:name=".Controller.LandingPageActivity"></activity>
         <activity
             android:name=".Controller.SplashActivity"
             android:label="@string/app_name"
@@ -27,13 +29,10 @@
         <activity
             android:name=".Controller.LoginActivity"
             android:label="@string/app_name"
-            android:theme="@style/NoTopBar">
-        </activity>
+            android:theme="@style/NoTopBar"></activity>
         <activity
             android:name=".Controller.RegisterActivity"
-            android:label="@string/app_name">
-
-        </activity>
+            android:label="@string/app_name"></activity>
     </application>
 
 </manifest>
