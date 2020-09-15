@@ -1,8 +1,6 @@
 package com.bcaf.ivan.finalprojectandroid.Controller
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,18 +10,18 @@ import com.bcaf.ivan.finalprojectandroid.Entity.TokenResult
 import com.bcaf.ivan.finalprojectandroid.R
 import com.bcaf.ivan.finalprojectandroid.Util.BusUtil
 import com.google.gson.GsonBuilder
-import kotlinx.android.synthetic.main.activity_landing_page.*
+import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LandingPageActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private val gson = GsonBuilder().create()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_landing_page)
+        setContentView(R.layout.activity_main)
         var tokenResult = intent.getStringExtra("tokenResult")
         var tokenUser = gson.fromJson(tokenResult, TokenResult::class.java)
         Toast.makeText(applicationContext, "Welcome " + tokenUser.userName, Toast.LENGTH_LONG)

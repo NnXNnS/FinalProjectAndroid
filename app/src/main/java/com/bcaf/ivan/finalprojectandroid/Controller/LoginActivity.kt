@@ -6,11 +6,13 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bcaf.ivan.finalprojectandroid.R
-import com.bcaf.ivan.finalprojectandroid.Util.JWT
-import com.bcaf.ivan.finalprojectandroid.Util.UserUtil
+import com.bcaf.ivan.finalprojectandroid.Util.*
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import kotlinx.android.synthetic.main.activity_login.*
+import okhttp3.MediaType
 import okhttp3.RequestBody
+import org.apache.commons.codec.binary.Base64
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,7 +22,7 @@ class LoginActivity : AppCompatActivity() {
     var gson: Gson = GsonBuilder().create()
 
     // region decoder
-    /*private val jsonDecoder = object : JsonDecoder<JWTAuthHeader, CustomJWTAuthPayload> {
+    private val jsonDecoder = object : JsonDecoder<JWTAuthHeader, CustomJWTAuthPayload> {
 
         override fun headerFrom(json: String): JWTAuthHeader {
             return gson.fromJson(json, JWTAuthHeader::class.java)
@@ -38,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
         override fun decode(string: String): ByteArray {
             return Base64.decodeBase64(string)
         }
-    }*/
+    }
     // endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
 
     // region login click
     fun loginClick(view: View) {
-        /*var email = inp_email.text.toString()
+        var email = inp_email.text.toString()
         var password = inp_password.text.toString()
         if (emailValidation(email)) {
 
@@ -66,15 +68,15 @@ class LoginActivity : AppCompatActivity() {
             userLogin(emailBody,passwordBody)
         } else {
             Toast.makeText(this, "email not valid!", Toast.LENGTH_LONG).show()
-        }*/
+        }
 
-        startActivity(Intent(applicationContext, LandingPageActivity::class.java))
+//        startActivity(Intent(applicationContext, LandingPageActivity::class.java))
     }
     // endregion
 
 
     // region user login
-    /*fun userLogin(emailBody: RequestBody, passwordBody: RequestBody) {
+    fun userLogin(emailBody: RequestBody, passwordBody: RequestBody) {
         UserUtil().getUser().login(emailBody, passwordBody)
             .enqueue(object : Callback<String> {
                 override fun onFailure(call: Call<String>, t: Throwable) {
@@ -91,20 +93,20 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(
                         Intent(
                             applicationContext,
-                            LandingPageActivity::class.java
+                            MainActivity::class.java
                         ).putExtra("tokenResult", t!!.payload.iss)
                     )
 
                 }
             })
-    }*/
+    }
     // endregion
 
     // region email validation
-    /*fun emailValidation(email: String): Boolean {
+    fun emailValidation(email: String): Boolean {
         var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
         return email.matches(emailPattern.toRegex())
-    }*/
+    }
     // endregion
 
     fun registerClick(view: View) {

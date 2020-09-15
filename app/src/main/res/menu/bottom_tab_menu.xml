@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/tab_one"
-        android:title="One"
-        android:enabled="true"/>
+        android:title="One"/>
 
     <item
         android:id="@+id/tab_two"
-        android:title="Two"/>
+        android:title="Two"
+        android:enabled="true"/>
 
     <item
         android:id="@+id/tab_three"
