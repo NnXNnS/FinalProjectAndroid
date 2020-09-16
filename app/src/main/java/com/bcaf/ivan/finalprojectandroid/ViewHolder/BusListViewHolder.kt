@@ -6,7 +6,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bcaf.ivan.finalprojectandroid.R
 
-open class LandingPageViewHolder : RecyclerView.ViewHolder {
+open class BusListViewHolder : RecyclerView.ViewHolder {
     var busCode: TextView
     var busMake: TextView
     var busCard:CardView

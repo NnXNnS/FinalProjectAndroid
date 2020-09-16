@@ -1,4 +1,4 @@
-package com.bcaf.ivan.finalprojectandroid.Controller;
+package com.bcaf.ivan.finalprojectandroid.Controller.Fragment;
 
 import android.os.Bundle;
 

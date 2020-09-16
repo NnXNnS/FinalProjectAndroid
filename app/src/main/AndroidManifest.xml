@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ListBusActivity"></activity>
+        <activity android:name=".Controller.ListBusActivity"></activity>
         <activity android:name=".Controller.MainActivity"></activity>
         <activity
             android:name=".Controller.SplashActivity"

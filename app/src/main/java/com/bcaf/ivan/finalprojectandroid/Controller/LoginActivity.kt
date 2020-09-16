@@ -17,7 +17,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 class LoginActivity : AppCompatActivity() {
     var gson: Gson = GsonBuilder().create()
 
@@ -70,10 +69,9 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "email not valid!", Toast.LENGTH_LONG).show()
         }
 
-//        startActivity(Intent(applicationContext, LandingPageActivity::class.java))
+//        startActivity(Intent(applicationContext, MainActivity::class.java))
     }
     // endregion
-
 
     // region user login
     fun userLogin(emailBody: RequestBody, passwordBody: RequestBody) {

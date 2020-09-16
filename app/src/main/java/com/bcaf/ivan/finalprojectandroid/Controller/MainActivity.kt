@@ -1,14 +1,16 @@
 package com.bcaf.ivan.finalprojectandroid.Controller
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bcaf.ivan.finalprojectandroid.Adapter.LandingPageAdapter
+import com.bcaf.ivan.finalprojectandroid.Adapter.BusListAdapter
 import com.bcaf.ivan.finalprojectandroid.Entity.Bus
 import com.bcaf.ivan.finalprojectandroid.Entity.TokenResult
 import com.bcaf.ivan.finalprojectandroid.R
 import com.bcaf.ivan.finalprojectandroid.Util.BusUtil
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.MediaType
@@ -17,7 +19,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private val gson = GsonBuilder().create()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,8 +55,12 @@ class MainActivity : AppCompatActivity() {
         })
     }
     fun createAdapter(busList:List<Bus>){
-        val adapter = LandingPageAdapter(busList)
+        val adapter = BusListAdapter(busList)
         adapter.notifyDataSetChanged()
         rv_bus.adapter = adapter
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        TODO("Not yet implemented")
     }
 }

@@ -2,14 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/tab_one"
-        android:title="One"/>
+        android:title="One"
+        android:icon="@drawable/ic_profile"/>
 
     <item
         android:id="@+id/tab_two"
         android:title="Two"
-        android:enabled="true"/>
+        android:enabled="true"
+        android:icon="@drawable/ic_bus"/>
 
     <item
         android:id="@+id/tab_three"
-        android:title="Three"/>
+        android:title="Three"
+        android:icon="@drawable/ic_agency"/>
 </menu>

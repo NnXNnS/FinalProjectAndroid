@@ -1,4 +1,4 @@
-package com.bcaf.ivan.finalprojectandroid;
+package com.bcaf.ivan.finalprojectandroid.Controller.Fragment;
 
 import android.os.Bundle;
 
@@ -8,20 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bcaf.ivan.finalprojectandroid.Entity.Bus;
-import com.bcaf.ivan.finalprojectandroid.Util.BusUtil;
-
-import java.util.List;
-
-import okhttp3.RequestBody;
-import retrofit2.Callback;
+import com.bcaf.ivan.finalprojectandroid.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link BusFragment#newInstance} factory method to
+ * Use the {@link AgencyFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BusFragment extends Fragment {
+public class AgencyFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,7 +26,7 @@ public class BusFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public BusFragment() {
+    public AgencyFragment() {
         // Required empty public constructor
     }
 
@@ -42,11 +36,11 @@ public class BusFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment BusFragment.
+     * @return A new instance of fragment AgencyFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static BusFragment newInstance(String param1, String param2) {
-        BusFragment fragment = new BusFragment();
+    public static AgencyFragment newInstance(String param1, String param2) {
+        AgencyFragment fragment = new AgencyFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -67,7 +61,6 @@ public class BusFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bus, container, false);
+        return inflater.inflate(R.layout.fragment_agency, container, false);
     }
-
 }
