@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bcaf.ivan.finalprojectandroid.Entity.Agency
 import com.bcaf.ivan.finalprojectandroid.Entity.User
+import com.bcaf.ivan.finalprojectandroid.Helper.CustomActivity
 import com.bcaf.ivan.finalprojectandroid.Helper.FieldChecker
 import com.bcaf.ivan.finalprojectandroid.Helper.ToastMessage
 import com.bcaf.ivan.finalprojectandroid.R
@@ -26,11 +27,13 @@ class RegisterActivity : AppCompatActivity() {
     var gson: Gson = GsonBuilder().create()
     private lateinit var fieldChecker: FieldChecker
     private lateinit var message: ToastMessage
+    private lateinit var activity:CustomActivity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         message = ToastMessage(applicationContext)
         fieldChecker = FieldChecker()
+        activity=CustomActivity(this)
     }
 
     fun registerClick(v: View) {
@@ -122,12 +125,7 @@ class RegisterActivity : AppCompatActivity() {
                         inp_agencyName,
                         inp_agencyDetail
                     )
-                    startActivity(
-                        Intent(
-                            this@RegisterActivity.baseContext,
-                            LoginActivity::class.java
-                        )
-                    )
+                    activity.start(LoginActivity::class.java)
                 }
 
             })

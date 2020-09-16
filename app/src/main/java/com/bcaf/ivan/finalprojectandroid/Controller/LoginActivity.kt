@@ -5,15 +5,15 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.bcaf.ivan.finalprojectandroid.Helper.*
+import com.bcaf.ivan.finalprojectandroid.Helper.CustomActivity
+import com.bcaf.ivan.finalprojectandroid.Helper.FieldChecker
+import com.bcaf.ivan.finalprojectandroid.Helper.SessionManager
+import com.bcaf.ivan.finalprojectandroid.Helper.ToastMessage
 import com.bcaf.ivan.finalprojectandroid.R
-import com.bcaf.ivan.finalprojectandroid.Util.*
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
+import com.bcaf.ivan.finalprojectandroid.Util.UserUtil
 import kotlinx.android.synthetic.main.activity_login.*
 import okhttp3.MediaType
 import okhttp3.RequestBody
-import org.apache.commons.codec.binary.Base64
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,6 +22,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var sessionManager: SessionManager
     lateinit var fieldChecker: FieldChecker
     lateinit var message: ToastMessage
+    lateinit var activity:CustomActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,13 +30,9 @@ class LoginActivity : AppCompatActivity() {
         sessionManager = SessionManager(applicationContext)
         fieldChecker = FieldChecker()
         message = ToastMessage(applicationContext)
+        activity= CustomActivity(this)
         if (sessionManager.getSession().userId != "")
-            startActivity(
-                Intent(
-                    applicationContext,
-                    MainActivity::class.java
-                )
-            )
+            activity.startAndDestroy(MainActivity::class.java,100L)
     }
 
     // region login click
@@ -80,25 +77,14 @@ class LoginActivity : AppCompatActivity() {
                     if (fieldChecker.fieldNull(sessionManager.getSession().userId.trim()))
                         sessionManager.removeSession()
                     else
-                        startActivity(
-                            Intent(
-                                applicationContext,
-                                MainActivity::class.java
-                            )
-                        )
+                        activity.startAndDestroy(MainActivity::class.java)
 
                 }
             })
     }
     // endregion
 
-
     fun registerClick(view: View) {
-        startActivity(
-            Intent(
-                this.baseContext,
-                RegisterActivity::class.java
-            )
-        )
+        activity.start(RegisterActivity::class.java)
     }
 }
