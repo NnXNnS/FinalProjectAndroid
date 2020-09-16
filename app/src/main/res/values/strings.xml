@@ -2,4 +2,7 @@
     <string name="app_name">FinalProjectAndroid</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="field_empty">Field cannot be null!</string>
+    <string name="error">Error!</string>
+    <string name="email_not_valid">Email not valid!</string>
 </resources>

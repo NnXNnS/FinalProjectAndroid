@@ -1,4 +1,4 @@
-package com.bcaf.ivan.finalprojectandroid.Util
+package com.bcaf.ivan.finalprojectandroid.Helper
 
 
 import android.os.Build
@@ -49,10 +49,20 @@ object JWT {
 
         val now = Instant.now().epochSecond // token timestamp in seconds
 
-        val header = JWTAuthHeader(kid = keyId)
-        val payload = JWTAuthPayload(teamId, now)
+        val header =
+            JWTAuthHeader(kid = keyId)
+        val payload =
+            JWTAuthPayload(teamId, now)
 
-        return token(header, payload, secret, jsonEncoder, encoder, decoder, charset)
+        return token(
+            header,
+            payload,
+            secret,
+            jsonEncoder,
+            encoder,
+            decoder,
+            charset
+        )
     }
 
     /**
@@ -80,7 +90,13 @@ object JWT {
 
         val value = "$base64Header$tokenDelimiter$base64Payload"
 
-        return value + tokenDelimiter + es256(secret, value, encoder, decoder, charset)
+        return value + tokenDelimiter + es256(
+            secret,
+            value,
+            encoder,
+            decoder,
+            charset
+        )
     }
 
     /**
@@ -108,9 +124,16 @@ object JWT {
 
             if (parts.size == 3) {
                 val signature = decoder.decode(parts[2].toByteArray(charset))
-                JWTToken(header, payload, signature)
+                JWTToken(
+                    header,
+                    payload,
+                    signature
+                )
             } else {
-                JWTToken(header, payload)
+                JWTToken(
+                    header,
+                    payload
+                )
             }
         } else {
             null

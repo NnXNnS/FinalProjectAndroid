@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bcaf.ivan.finalprojectandroid.Adapter.BusListAdapter
 import com.bcaf.ivan.finalprojectandroid.Entity.Bus
+import com.bcaf.ivan.finalprojectandroid.Helper.SessionManager
 import com.bcaf.ivan.finalprojectandroid.R
 import com.bcaf.ivan.finalprojectandroid.Util.BusUtil
 import kotlinx.android.synthetic.main.fragment_bus.*
@@ -27,30 +28,29 @@ import retrofit2.Response
  */
 class BusFragment : Fragment() {
 
-    var agencyId: String = ""
     var rv_bus: RecyclerView? = null
-
+            ;
+    lateinit var sessionManager: SessionManager
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
         val myView: View = inflater.inflate(R.layout.fragment_bus, container, false)
-
+        sessionManager = SessionManager(context!!)
         rv_bus = myView.findViewById(R.id.rv_bus)
         rv_bus!!.setHasFixedSize(true)
         rv_bus!!.layoutManager = LinearLayoutManager(context)
 
-        agencyId = arguments?.getString("agencyId").toString()
-        getAllBus(agencyId)
+        getAllBus()
 
         return myView
     }
 
-    fun getAllBus(agencyId: String) {
-        Log.i("test", "getAllBus: $agencyId")
+    fun getAllBus() {
+        Log.i("test", "getAllBus: ${sessionManager.getSession().agencyId}")
         val agencyBody: RequestBody = RequestBody.create(
             MediaType.parse("text/plain"),
-            agencyId
+            sessionManager.getSession().agencyId
         )
 
         BusUtil().getBus().getAllBus(agencyBody).enqueue(object : Callback<List<Bus>> {
@@ -67,7 +67,6 @@ class BusFragment : Fragment() {
     }
 
     fun createAdapter(busList: List<Bus>) {
-//        Log.i("test", "createAdapter: ${busList[0]}")
         val adapter = BusListAdapter(busList)
         adapter.notifyDataSetChanged()
         rv_bus!!.adapter = adapter

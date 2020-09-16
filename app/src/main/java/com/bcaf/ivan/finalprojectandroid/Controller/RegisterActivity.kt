@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bcaf.ivan.finalprojectandroid.Entity.Agency
 import com.bcaf.ivan.finalprojectandroid.Entity.User
+import com.bcaf.ivan.finalprojectandroid.Helper.FieldChecker
+import com.bcaf.ivan.finalprojectandroid.Helper.ToastMessage
 import com.bcaf.ivan.finalprojectandroid.R
 import com.bcaf.ivan.finalprojectandroid.Util.AgencyUtil
 import com.bcaf.ivan.finalprojectandroid.Util.UserUtil
@@ -22,54 +24,57 @@ import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
     var gson: Gson = GsonBuilder().create()
+    private lateinit var fieldChecker: FieldChecker
+    private lateinit var message: ToastMessage
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-
-    }
-
-    fun createParsingUser(
-        firstName: String,
-        lastName: String,
-        password: String,
-        email: String,
-        mobileNumber: String
-    ): User {
-        var user = User("", firstName, lastName, email, password, mobileNumber, "")
-        return user
+        message = ToastMessage(applicationContext)
+        fieldChecker = FieldChecker()
     }
 
     fun registerClick(v: View) {
         val pass = inp_password.text.toString()
         val rePass = inp_rePassword.text.toString()
+        val agencyName = inp_agencyName.text.toString()
+        val agencyDetails = inp_agencyDetail.text.toString()
 
-        var user = createParsingUser(
-            inp_firstName.text.toString(),
-            inp_lastName.text.toString(),
-            inp_password.text.toString(),
-            inp_email.text.toString(),
-            inp_mobileNUmber.text.toString()
+        var user = User(
+            firstName = inp_firstName.text.toString(),
+            lastName = inp_lastName.text.toString(),
+            password = inp_password.text.toString(),
+            email = inp_email.text.toString(),
+            mobileNumber = inp_mobileNUmber.text.toString()
         )
-        if (checkPassword(pass, rePass)) {
-            if (emailValidation(user.email!!)) {
-                checkEmailRegistered(user)
-            } else {
-                Toast.makeText(this, "Email not valid!", Toast.LENGTH_LONG).show()
-            }
+        if (fieldChecker.fieldNull(
+                user.firstName!!.trim(),
+                user.lastName!!.trim(),
+                user.password!!.trim(),
+                user.email!!.trim(),
+                user.mobileNumber!!.trim(),
+                agencyName.trim(),
+                agencyDetails.trim()
+            )
+        ) {
+            message.nullField()
         } else {
-            Toast.makeText(this, "wrong input password!", Toast.LENGTH_LONG).show()
+            if (fieldChecker.checkPassword(pass, rePass)) {
+                if (fieldChecker.emailValidation(user.email!!)) {
+                    checkEmailRegistered(user)
+                } else {
+                    message.emailNotValid()
+                }
+            } else {
+                message.custom("Password does not match!")
+            }
         }
     }
 
-    fun createUser(user:User) {
+    fun createUser(user: User) {
         UserUtil().getUser().register(user)
             .enqueue(object : Callback<User> {
                 override fun onFailure(call: Call<User>, t: Throwable) {
-                    Toast.makeText(
-                        this@RegisterActivity,
-                        "Error!",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    message.error()
                 }
 
                 override fun onResponse(
@@ -82,11 +87,9 @@ class RegisterActivity : AppCompatActivity() {
                     val agencyDetails = inp_agencyDetail.text.toString()
                     var agency: Agency =
                         Agency(
-                            "",
-                            "",
-                            agencyName,
-                            agencyDetails,
-                            userRegisterResult.id
+                            name = agencyName,
+                            details = agencyDetails,
+                            userId = userRegisterResult.id!!
                         )
                     Log.d("Agency", gson.toJson(agency))
                     createAgency(agency)
@@ -101,22 +104,24 @@ class RegisterActivity : AppCompatActivity() {
                     call: Call<Agency>,
                     t: Throwable
                 ) {
-                    Toast.makeText(
-                        this@RegisterActivity,
-                        "Error!",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    message.error()
                 }
 
                 override fun onResponse(
                     call: Call<Agency>,
                     response: Response<Agency>
                 ) {
-                    Toast.makeText(
-                        this@RegisterActivity,
-                        "Register Success!",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    message.custom("Register success!")
+                    fieldChecker.clearField(
+                        inp_firstName,
+                        inp_lastName,
+                        inp_email,
+                        inp_mobileNUmber,
+                        inp_password,
+                        inp_rePassword,
+                        inp_agencyName,
+                        inp_agencyDetail
+                    )
                     startActivity(
                         Intent(
                             this@RegisterActivity.baseContext,
@@ -127,15 +132,12 @@ class RegisterActivity : AppCompatActivity() {
 
             })
     }
+
     fun checkEmailRegistered(user: User) {
         UserUtil().getUser().checkEmail(user)
             .enqueue(object : Callback<ResponseBody> {
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                    Toast.makeText(
-                        this@RegisterActivity,
-                        "Error!",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    message.error()
                 }
 
                 override fun onResponse(
@@ -148,21 +150,9 @@ class RegisterActivity : AppCompatActivity() {
                     if (userCheckEmailResult.id == null || userCheckEmailResult.id == "") {
                         createUser(user)
                     } else {
-                        Toast.makeText(
-                            this@RegisterActivity,
-                            "Email telah terdaftar!",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        message.custom("Email is already registered!")
                     }
                 }
             })
-    }
-    fun emailValidation(email: String): Boolean {
-        var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
-        return email.matches(emailPattern.toRegex())
-    }
-
-    fun checkPassword(pass: String, rePass: String): Boolean {
-        return pass == rePass
     }
 }
