@@ -68,8 +68,6 @@ class LoginActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "email not valid!", Toast.LENGTH_LONG).show()
         }
-
-//        startActivity(Intent(applicationContext, MainActivity::class.java))
     }
     // endregion
 

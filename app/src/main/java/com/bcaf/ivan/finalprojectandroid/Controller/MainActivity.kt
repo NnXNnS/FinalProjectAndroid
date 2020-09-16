@@ -4,63 +4,62 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.bcaf.ivan.finalprojectandroid.Adapter.BusListAdapter
-import com.bcaf.ivan.finalprojectandroid.Entity.Bus
+import androidx.fragment.app.Fragment
+import com.bcaf.ivan.finalprojectandroid.Controller.Fragment.AgencyFragment
+import com.bcaf.ivan.finalprojectandroid.Controller.Fragment.BusFragment
+import com.bcaf.ivan.finalprojectandroid.Controller.Fragment.ProfileFragment
 import com.bcaf.ivan.finalprojectandroid.Entity.TokenResult
 import com.bcaf.ivan.finalprojectandroid.R
-import com.bcaf.ivan.finalprojectandroid.Util.BusUtil
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_main.*
-import okhttp3.MediaType
-import okhttp3.RequestBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private val gson = GsonBuilder().create()
+    private val bundle = Bundle()
+    private lateinit var tokenUser: TokenResult
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         var tokenResult = intent.getStringExtra("tokenResult")
-        var tokenUser = gson.fromJson(tokenResult, TokenResult::class.java)
-        Toast.makeText(applicationContext, "Welcome " + tokenUser.userName, Toast.LENGTH_LONG)
-            .show()
-        txt_firstName.text = tokenUser.userName
+        tokenUser = gson.fromJson(tokenResult, TokenResult::class.java)
 
-        rv_bus.setHasFixedSize(true)
-        rv_bus.layoutManager = LinearLayoutManager(this)
-        val agencyBody: RequestBody = RequestBody.create(
-            MediaType.parse("text/plain"),
-            tokenUser.agencyId!!
-        )
-        getAllBus(agencyBody)
+        nav_bottomTab.setOnNavigationItemSelectedListener(this)
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        bundle.putString("agencyId", tokenUser.agencyId)
+
+        var busFragment = BusFragment()
+        busFragment.arguments = bundle
+        loadfragment(busFragment)
+    }
+
     override fun onBackPressed() {
-        Toast.makeText(applicationContext,"Log out?",Toast.LENGTH_LONG).show()
+        Toast.makeText(applicationContext, "Log out?", Toast.LENGTH_LONG).show()
     }
-    fun getAllBus(agencyBody:RequestBody){
-        BusUtil().getBus().getAllBus(agencyBody).enqueue(object : Callback<List<Bus>> {
-            override fun onFailure(call: Call<List<Bus>>, t: Throwable) {
-                Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()
-            }
 
-            override fun onResponse(call: Call<List<Bus>>, response: Response<List<Bus>>) {
-                var busList=response.body()!!
-
-                createAdapter(busList)
-            }
-        })
-    }
-    fun createAdapter(busList:List<Bus>){
-        val adapter = BusListAdapter(busList)
-        adapter.notifyDataSetChanged()
-        rv_bus.adapter = adapter
+    fun loadfragment(fragment: Fragment): Boolean {
+        supportFragmentManager
+            .beginTransaction().replace(R.id.cont_fragment, fragment)
+            .commit()
+        return true
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        TODO("Not yet implemented")
+        var fragment: Fragment?
+
+        when (item.itemId) {
+            R.id.tab_agency -> fragment = AgencyFragment()
+            R.id.tab_bus -> fragment = BusFragment()
+            R.id.tab_profile -> fragment = ProfileFragment()
+            else -> fragment = BusFragment()
+        }
+
+        return loadfragment(fragment)
     }
 }
