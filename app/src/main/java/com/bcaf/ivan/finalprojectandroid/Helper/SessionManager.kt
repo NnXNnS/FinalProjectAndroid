@@ -3,12 +3,13 @@ package com.bcaf.ivan.finalprojectandroid.Helper
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
+import com.auth0.android.jwt.JWT
 import com.bcaf.ivan.finalprojectandroid.Entity.TokenResult
-import com.bcaf.ivan.finalprojectandroid.Helper.JWT.*
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import org.apache.commons.codec.binary.Base64
-import java.lang.Exception
+import org.json.JSONObject
 
 
 class SessionManager {
@@ -19,38 +20,17 @@ class SessionManager {
         prefs = context.getSharedPreferences("TokenUser", Context.MODE_PRIVATE)
     }
 
-    // region decoder
-    private val jsonDecoder = object :
-        JsonDecoder<JWTAuthHeader, CustomJWTAuthPayload> {
-
-        override fun headerFrom(json: String): JWTAuthHeader {
-            return gson.fromJson(json, JWTAuthHeader::class.java)
-        }
-
-        override fun payloadFrom(json: String): CustomJWTAuthPayload {
-            return gson.fromJson(json, CustomJWTAuthPayload::class.java)
-        }
-    }
-    private val decoder = object :
-        Base64Decoder {
-        override fun decode(bytes: ByteArray): ByteArray {
-            return Base64.decodeBase64(bytes)
-        }
-
-        override fun decode(string: String): ByteArray {
-            return Base64.decodeBase64(string)
-        }
-    }
-
     // endregion
     fun setSession(rs: String) {
-        val t = JWT.decode(rs, jsonDecoder, decoder)
+        val jwt = JWT(rs)
+        val getClaims = jwt.claims
+        val token = getClaims["iss"]!!.asString()
         prefs
         with(prefs.edit()) {
             try {
                 putString(
                     "Token",
-                    gson.toJson(gson.fromJson(t!!.payload.iss, TokenResult::class.java))
+                    gson.toJson(gson.fromJson(token, TokenResult::class.java))
                 )
             } catch (e: Exception) {
                 putString(
