@@ -13,4 +13,8 @@ interface BusService {
     @Multipart
     @POST("bus/getAllBusByAgencyId")
     fun getAllBus(@Part("agencyId") agencyId: RequestBody): Call<List<Bus>>
+
+    @Multipart
+    @POST("bus/getBusById")
+    fun getBus(@Part("busId") busId:RequestBody):Call<Bus>
 }

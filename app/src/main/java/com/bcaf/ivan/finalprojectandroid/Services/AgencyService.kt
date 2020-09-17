@@ -13,4 +13,8 @@ import retrofit2.http.Part
 interface AgencyService {
     @POST("agency/createAgency")
     fun createAgency(@Body agencyInp: Agency): Call<Agency>
+
+    @Multipart
+    @POST("agency/getAgencyById")
+    fun getAgency(@Part("agencyId") agencyId:RequestBody):Call<Agency>
 }

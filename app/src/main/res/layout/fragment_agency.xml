@@ -27,13 +27,15 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Something1"
+            android:text="Agency Name"
+            android:id="@+id/txt_agency_name"
             android:textSize="30sp"
             android:textStyle="bold"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Something2"
+            android:text="Agency Details"
+            android:id="@+id/txt_agency_details"
             android:textSize="30sp"
             android:textStyle="bold"/>
     </LinearLayout>
