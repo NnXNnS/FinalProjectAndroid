@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         sessionManager= SessionManager(applicationContext)
         activity= CustomActivity(this)
         nav_bottomTab.setOnNavigationItemSelectedListener(this)
+        nav_bottomTab.selectedItemId = R.id.tab_bus
     }
 
     override fun onResume() {

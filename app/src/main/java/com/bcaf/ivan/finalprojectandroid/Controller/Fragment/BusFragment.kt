@@ -14,6 +14,7 @@ import com.bcaf.ivan.finalprojectandroid.Entity.Bus
 import com.bcaf.ivan.finalprojectandroid.Helper.SessionManager
 import com.bcaf.ivan.finalprojectandroid.R
 import com.bcaf.ivan.finalprojectandroid.Util.BusUtil
+import kotlinx.android.synthetic.main.fragment_bus.*
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -28,7 +29,6 @@ import retrofit2.Response
 class BusFragment : Fragment() {
 
     var rv_bus: RecyclerView? = null
-            ;
     lateinit var sessionManager: SessionManager
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
