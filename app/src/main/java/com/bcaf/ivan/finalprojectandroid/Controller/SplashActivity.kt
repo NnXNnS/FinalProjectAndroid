@@ -19,11 +19,7 @@ class SplashActivity: Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         activity= CustomActivity(this)
-        // region splash screen animation fade in
-        /*var logo=findViewById<ImageView>(R.id.ic_logo)
-        val animation = AnimationUtils.loadAnimation(this@SplashActivity, R.anim.fade_in)
-        logo.startAnimation(animation)*/
-        // endregion
+
         activity.startAndDestroy(LoginActivity::class.java,2000L)
     }
 }
