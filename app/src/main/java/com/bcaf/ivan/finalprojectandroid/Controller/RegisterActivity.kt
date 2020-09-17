@@ -47,7 +47,7 @@ class RegisterActivity : AppCompatActivity() {
             lastName = inp_lastName.text.toString(),
             password = inp_password.text.toString(),
             email = inp_email.text.toString(),
-            mobileNumber = inp_mobileNUmber.text.toString()
+            mobileNumber = inp_mobileNumber.text.toString()
         )
         if (fieldChecker.fieldNull(
                 user.firstName!!.trim(),
@@ -119,7 +119,7 @@ class RegisterActivity : AppCompatActivity() {
                         inp_firstName,
                         inp_lastName,
                         inp_email,
-                        inp_mobileNUmber,
+                        inp_mobileNumber,
                         inp_password,
                         inp_rePassword,
                         inp_agencyName,

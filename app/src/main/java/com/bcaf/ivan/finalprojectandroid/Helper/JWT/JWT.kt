@@ -1,4 +1,4 @@
-package com.bcaf.ivan.finalprojectandroid.Helper
+package com.bcaf.ivan.finalprojectandroid.Helper.JWT
 
 
 import android.os.Build
@@ -52,7 +52,10 @@ object JWT {
         val header =
             JWTAuthHeader(kid = keyId)
         val payload =
-            JWTAuthPayload(teamId, now)
+            JWTAuthPayload(
+                teamId,
+                now
+            )
 
         return token(
             header,

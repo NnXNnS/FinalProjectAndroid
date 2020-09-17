@@ -1,125 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/register_activity"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_light"
-    tools:context="com.bcaf.ivan.finalprojectandroid.Controller.RegisterActivity">
+    style="@style/loginParent"
+    tools:context="com.bcaf.ivan.finalprojectandroid.Controller.LoginActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical"
-        android:padding="16dp">
+    <ScrollView
+        style="@style/loginParent">
+        <RelativeLayout
+            style="@style/loginParent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:weightSum="1">
+                <LinearLayout
+                    style="@style/parent"
+                    android:background="@drawable/login_shape_bk"
+                    android:orientation="vertical"
+                    android:layout_weight="0.25">
+                    <ImageView
+                        style="@style/parent"
+                        android:background="@drawable/ic_login_bk"
+                        android:contentDescription="Login Background"/>
+                </LinearLayout>
+            </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="sans-serif"
-            android:text="REGISTER"
-            android:textColor="#fff"
-            android:textSize="24sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp">
+                <TextView
+                    style="@style/headerText"
+                    android:layout_gravity="center"
+                    android:text="@string/app_name"
+                    android:layout_marginTop="40dp"/>
 
-        <EditText
-            android:id="@+id/inp_firstName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="First Name"
-            android:inputType="textPersonName"
-            android:padding="8dp"
-            android:textColor="#80FFFFFF"
-            android:textColorHint="#80FFFFFF" />
+                <androidx.cardview.widget.CardView
+                    style="@style/loginCard"
+                    app:cardCornerRadius="@dimen/loginCardRadius"
+                    android:elevation="5dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/signup_text_margin_top"
+                    android:layout_marginBottom="@dimen/signup_text_margin_top"
+                    android:background="@android:color/white"
+                    android:padding="8dp">
 
-        <EditText
-            android:id="@+id/inp_lastName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Last Name"
-            android:inputType="textPersonName"
-            android:padding="8dp"
-            android:textColor="#80FFFFFF"
-            android:textColorHint="#80FFFFFF" />
+                    <LinearLayout
+                        style="@style/linearParent"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/signup_text_margin_top">
+                        <TextView
+                            style="@style/headerTextPrimary"
+                            android:text="Register"
+                            android:layout_marginTop="@dimen/signup_text_margin_top"/>
 
-        <EditText
-            android:id="@+id/inp_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:padding="8dp"
-            android:textColor="#80FFFFFF"
-            android:textColorHint="#80FFFFFF" />
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/parent"
+                            android:layout_marginTop="@dimen/signup_text_margin_top">
+                            <com.google.android.material.textfield.TextInputEditText
+                                style="@style/modifiedEditText"
+                                android:id="@+id/inp_firstName"
+                                android:inputType="textPersonName"
+                                android:maxLines="1"
+                                android:hint="First name"/>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/inp_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:padding="8dp"
-            android:textColor="#80FFFFFF"
-            android:textColorHint="#80FFFFFF" />
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/parent"
+                            android:layout_marginTop="@dimen/signup_text_margin_top">
+                            <com.google.android.material.textfield.TextInputEditText
+                                style="@style/modifiedEditText"
+                                android:id="@+id/inp_lastName"
+                                android:inputType="textPersonName"
+                                android:maxLines="1"
+                                android:hint="Last name"/>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/inp_rePassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Re-Password"
-            android:inputType="textPassword"
-            android:padding="8dp"
-            android:textColor="#80FFFFFF"
-            android:textColorHint="#80FFFFFF" />
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/parent"
+                            android:layout_marginTop="@dimen/signup_text_margin_top">
+                            <com.google.android.material.textfield.TextInputEditText
+                                style="@style/modifiedEditText"
+                                android:id="@+id/inp_email"
+                                android:inputType="textEmailAddress"
+                                android:maxLines="1"
+                                android:hint="Email"/>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/inp_agencyName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Agency Name"
-            android:inputType="textEmailAddress"
-            android:padding="8dp"
-            android:textColor="#80FFFFFF"
-            android:textColorHint="#80FFFFFF" />
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/parent"
+                            android:layout_marginTop="@dimen/signup_text_margin_top">
+                            <com.google.android.material.textfield.TextInputEditText
+                                style="@style/modifiedEditText"
+                                android:id="@+id/inp_password"
+                                android:inputType="textPassword"
+                                android:maxLines="1"
+                                android:hint="Last name"/>
+                        </com.google.android.material.textfield.TextInputLayout>
 
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/parent"
+                            android:layout_marginTop="@dimen/signup_text_margin_top">
+                            <com.google.android.material.textfield.TextInputEditText
+                                style="@style/modifiedEditText"
+                                android:id="@+id/inp_rePassword"
+                                android:inputType="textPassword"
+                                android:maxLines="1"
+                                android:hint="Password"/>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/inp_agencyDetail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Agency Detail"
-            android:inputType="textEmailAddress"
-            android:padding="8dp"
-            android:textColor="#80FFFFFF"
-            android:textColorHint="#80FFFFFF" />
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/parent"
+                            android:layout_marginTop="@dimen/signup_text_margin_top">
+                            <com.google.android.material.textfield.TextInputEditText
+                                style="@style/modifiedEditText"
+                                android:id="@+id/inp_agencyName"
+                                android:inputType="textPersonName"
+                                android:maxLines="1"
+                                android:hint="Agency name"/>
+                        </com.google.android.material.textfield.TextInputLayout>
 
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/parent"
+                            android:layout_marginTop="@dimen/signup_text_margin_top">
+                            <com.google.android.material.textfield.TextInputEditText
+                                style="@style/modifiedEditText"
+                                android:id="@+id/inp_agencyDetail"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:hint="Agency details"/>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/inp_mobileNUmber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Mobile Number"
-            android:inputType="textEmailAddress"
-            android:padding="8dp"
-            android:textColor="#80FFFFFF"
-            android:textColorHint="#80FFFFFF" />
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/parent"
+                            android:layout_marginTop="@dimen/signup_text_margin_top">
+                            <com.google.android.material.textfield.TextInputEditText
+                                style="@style/modifiedEditText"
+                                android:id="@+id/inp_mobileNumber"
+                                android:inputType="phone"
+                                android:maxLines="1"
+                                android:hint="Mobile number"/>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/btnRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:onClick="registerClick"
-            android:text="REGISTER"
-            android:textColor="#FFF" />
-    </LinearLayout>
+                        <Button
+                            style="@style/loginButton"
+                            android:id="@+id/btn_register"
+                            android:text="Register"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/signup_text_margin_top"
+                            android:onClick="registerClick"/>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
