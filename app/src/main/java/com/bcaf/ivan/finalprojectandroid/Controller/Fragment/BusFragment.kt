@@ -13,7 +13,6 @@ import com.bcaf.ivan.finalprojectandroid.Adapter.BusListAdapter
 import com.bcaf.ivan.finalprojectandroid.Entity.Bus
 import com.bcaf.ivan.finalprojectandroid.R
 import com.bcaf.ivan.finalprojectandroid.Util.BusUtil
-import kotlinx.android.synthetic.main.fragment_bus.*
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import retrofit2.Call

@@ -48,7 +48,7 @@ class RegisterActivity : AppCompatActivity() {
             inp_lastName.text.toString(),
             inp_password.text.toString(),
             inp_email.text.toString(),
-            inp_mobileNUmber.text.toString()
+            inp_mobileNumber.text.toString()
         )
         if (checkPassword(pass, rePass)) {
             if (emailValidation(user.email!!)) {
