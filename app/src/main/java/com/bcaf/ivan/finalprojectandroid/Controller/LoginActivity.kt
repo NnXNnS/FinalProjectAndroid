@@ -31,8 +31,6 @@ class LoginActivity : AppCompatActivity() {
         fieldChecker = FieldChecker()
         message = ToastMessage(applicationContext)
         activity= CustomActivity(this)
-        if (sessionManager.getSession().userId != "")
-            activity.startAndDestroy(MainActivity::class.java,100L)
     }
 
     // region login click

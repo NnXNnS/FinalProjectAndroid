@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         setContentView(R.layout.activity_main)
         sessionManager= SessionManager(applicationContext)
         activity= CustomActivity(this)
+
         nav_bottomTab.setOnNavigationItemSelectedListener(this)
         nav_bottomTab.selectedItemId = R.id.tab_bus
     }
