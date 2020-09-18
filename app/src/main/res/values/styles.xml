@@ -24,6 +24,7 @@
         <item name="android:textAlignment">center</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/montserrat_alternates_bold</item>
     </style>
 
     <style name="loginCard" parent="parent">
@@ -36,6 +37,7 @@
 
     <style name="headerTextPrimary" parent="headerText">
         <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:fontFamily">@font/montserrat_alternates_bold</item>
     </style>
 
     <style name="modifiedEditText" parent="parent">
@@ -49,8 +51,17 @@
     </style>
 
     <style name="loginButton" parent="viewParent">
+        <item name="android:background">@drawable/login_button_bk</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
+    </style>
+    
+    <style name="inputLayoutBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/primaryTextColor</item>
+        <item name="colorControlActivated">@color/primaryTextColor</item>
+        <item name="android:textColorHighlight">@color/primaryTextColor</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
 </resources>
