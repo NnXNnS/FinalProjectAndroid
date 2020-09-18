@@ -12,14 +12,16 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bcaf.ivan.finalprojectandroid.Helper.CustomActivity
 import com.bcaf.ivan.finalprojectandroid.R
 
-class SplashActivity: Activity() {
+class SplashActivity : Activity() {
     lateinit var handler: Handler
     lateinit var activity: CustomActivity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        activity= CustomActivity(this)
-
-        activity.startAndDestroy(LoginActivity::class.java,2000L)
+        activity = CustomActivity(this)
+        var logo = findViewById<ImageView>(R.id.ic_logo)
+        var animation = AnimationUtils.loadAnimation(this@SplashActivity, R.anim.fade_in)
+        logo.startAnimation(animation)
+        activity.startAndDestroy(LoginActivity::class.java, 7500L)
     }
 }
