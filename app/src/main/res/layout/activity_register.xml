@@ -66,9 +66,11 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/inputLayoutBox"
+                            app:hintTextAppearance="@style/inputLayoutBoxHint"
                             android:layout_marginTop="@dimen/loginViewsMargin">
                             <com.google.android.material.textfield.TextInputEditText
                                 style="@style/modifiedEditText"
+                                android:textCursorDrawable="@drawable/cursor_color"
                                 android:id="@+id/inp_firstName"
                                 android:inputType="textPersonName"
                                 android:maxLines="1"
@@ -77,9 +79,11 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/inputLayoutBox"
+                            app:hintTextAppearance="@style/inputLayoutBoxHint"
                             android:layout_marginTop="@dimen/signup_text_margin_top">
                             <com.google.android.material.textfield.TextInputEditText
                                 style="@style/modifiedEditText"
+                                android:textCursorDrawable="@drawable/cursor_color"
                                 android:id="@+id/inp_lastName"
                                 android:inputType="textPersonName"
                                 android:maxLines="1"
@@ -88,9 +92,11 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/inputLayoutBox"
+                            app:hintTextAppearance="@style/inputLayoutBoxHint"
                             android:layout_marginTop="@dimen/signup_text_margin_top">
                             <com.google.android.material.textfield.TextInputEditText
                                 style="@style/modifiedEditText"
+                                android:textCursorDrawable="@drawable/cursor_color"
                                 android:id="@+id/inp_email"
                                 android:inputType="textEmailAddress"
                                 android:maxLines="1"
@@ -99,9 +105,11 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/inputLayoutBox"
+                            app:hintTextAppearance="@style/inputLayoutBoxHint"
                             android:layout_marginTop="@dimen/signup_text_margin_top">
                             <com.google.android.material.textfield.TextInputEditText
                                 style="@style/modifiedEditText"
+                                android:textCursorDrawable="@drawable/cursor_color"
                                 android:id="@+id/inp_password"
                                 android:inputType="textPassword"
                                 android:maxLines="1"
@@ -110,9 +118,11 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/inputLayoutBox"
+                            app:hintTextAppearance="@style/inputLayoutBoxHint"
                             android:layout_marginTop="@dimen/signup_text_margin_top">
                             <com.google.android.material.textfield.TextInputEditText
                                 style="@style/modifiedEditText"
+                                android:textCursorDrawable="@drawable/cursor_color"
                                 android:id="@+id/inp_rePassword"
                                 android:inputType="textPassword"
                                 android:maxLines="1"
@@ -121,9 +131,11 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/inputLayoutBox"
+                            app:hintTextAppearance="@style/inputLayoutBoxHint"
                             android:layout_marginTop="@dimen/signup_text_margin_top">
                             <com.google.android.material.textfield.TextInputEditText
                                 style="@style/modifiedEditText"
+                                android:textCursorDrawable="@drawable/cursor_color"
                                 android:id="@+id/inp_agencyName"
                                 android:inputType="textPersonName"
                                 android:maxLines="1"
@@ -132,9 +144,11 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/inputLayoutBox"
+                            app:hintTextAppearance="@style/inputLayoutBoxHint"
                             android:layout_marginTop="@dimen/signup_text_margin_top">
                             <com.google.android.material.textfield.TextInputEditText
                                 style="@style/modifiedEditText"
+                                android:textCursorDrawable="@drawable/cursor_color"
                                 android:id="@+id/inp_agencyDetail"
                                 android:inputType="text"
                                 android:maxLines="1"
@@ -143,9 +157,11 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/inputLayoutBox"
+                            app:hintTextAppearance="@style/inputLayoutBoxHint"
                             android:layout_marginTop="@dimen/signup_text_margin_top">
                             <com.google.android.material.textfield.TextInputEditText
                                 style="@style/modifiedEditText"
+                                android:textCursorDrawable="@drawable/cursor_color"
                                 android:id="@+id/inp_mobileNumber"
                                 android:inputType="phone"
                                 android:maxLines="1"
