@@ -20,18 +20,18 @@ class SplashActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-	sessionManager= SessionManager(applicationContext)
-        activity= CustomActivity(this)
-	var logo = findViewById<ImageView>(R.id.ic_logo)
+        sessionManager = SessionManager(applicationContext)
+        activity = CustomActivity(this)
+        var logo = findViewById<ImageView>(R.id.ic_logo)
         var animation = AnimationUtils.loadAnimation(this@SplashActivity, R.anim.fade_in)
         logo.startAnimation(animation)
-        if(activity.isOnline(applicationContext))
+        if (activity.isOnline(applicationContext))
             if (sessionManager.getSession().userId != "")
-                activity.startAndDestroy(MainActivity::class.java,100L)
+                activity.startAndDestroy(MainActivity::class.java, 7500L)
             else
                 activity.startAndDestroy(LoginActivity::class.java, 7500L)
-	 else        
-	activity.startAndDestroy(LoginActivity::class.java, 7500L)
+        else
+            activity.startAndDestroy(LoginActivity::class.java, 7500L)
 
     }
 }
