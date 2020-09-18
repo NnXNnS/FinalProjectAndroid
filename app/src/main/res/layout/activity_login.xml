@@ -56,7 +56,9 @@
                     <LinearLayout
                         style="@style/linearParent"
                         android:layout_gravity="center"
-                        android:padding="@dimen/loginViewsMargin">
+                        android:padding="@dimen/loginViewsMargin"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true">
                         <TextView
                             style="@style/headerTextPrimary"
                             android:text="Login"
