@@ -52,6 +52,8 @@ class AgencyFragment : Fragment() {
                 var agency = response.body()
                 txt_agency_name.text="${agency!!.name}"
                 txt_agency_details.text="${agency!!.details}"
+                inp_agency_name.setText(agency.name)
+                inp_agency_details.setText(agency.details)
             }
 
             override fun onFailure(call: Call<Agency>, t: Throwable) {

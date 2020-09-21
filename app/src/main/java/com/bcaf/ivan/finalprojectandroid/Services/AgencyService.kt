@@ -17,4 +17,7 @@ interface AgencyService {
     @Multipart
     @POST("agency/getAgencyById")
     fun getAgency(@Part("agencyId") agencyId:RequestBody):Call<Agency>
+
+    @POST("agency/updateAgency")
+    fun updateAgency(@Body agency: Agency): Call<Agency>
 }

@@ -14,17 +14,20 @@ import androidx.fragment.app.Fragment
 import com.bcaf.ivan.finalprojectandroid.Controller.Fragment.AgencyFragment
 import com.bcaf.ivan.finalprojectandroid.Controller.Fragment.BusFragment
 import com.bcaf.ivan.finalprojectandroid.Controller.Fragment.ProfileFragment
+import com.bcaf.ivan.finalprojectandroid.Entity.Agency
 import com.bcaf.ivan.finalprojectandroid.Entity.User
 import com.bcaf.ivan.finalprojectandroid.Helper.CustomActivity
 import com.bcaf.ivan.finalprojectandroid.Helper.FieldChecker
 import com.bcaf.ivan.finalprojectandroid.Helper.SessionManager
 import com.bcaf.ivan.finalprojectandroid.Helper.ToastMessage
 import com.bcaf.ivan.finalprojectandroid.R
+import com.bcaf.ivan.finalprojectandroid.Util.AgencyUtil
 import com.bcaf.ivan.finalprojectandroid.Util.UserUtil
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_agency.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -97,6 +100,30 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         alertDialog.show();
     }
 
+    fun saveChangeAgencyData(view: View) {
+        if (!fieldChecker.fieldNull(inp_agency_name, inp_agency_details)) {
+            var agency = Agency()
+            agency.name = inp_agency_name.text.toString()
+            agency.details = inp_agency_details.text.toString()
+            agency.id = sessionManager.getSession().agencyId
+            AgencyUtil().getAgency().updateAgency(agency).enqueue(object : Callback<Agency> {
+                override fun onFailure(call: Call<Agency>, t: Throwable) {
+                    toast.error()
+                }
+
+                override fun onResponse(call: Call<Agency>, response: Response<Agency>) {
+                    var agency=response.body()!!
+                    txt_agency_name.text=agency.name
+                    txt_agency_details.text=agency.details
+                    toast.custom("Update Success!")
+                }
+
+            })
+        } else {
+            toast.nullField()
+        }
+    }
+
     fun saveChangeProfileData(view: View) {
         var updateUser = User()
         var boolUser = false
@@ -139,7 +166,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             checkEmailValidation(updateUser)
         }
     }
-    fun checkEmailValidation(updateUser: User){
+
+    fun checkEmailValidation(updateUser: User) {
         UserUtil().getUser().checkEmail(updateUser).enqueue(object : Callback<ResponseBody> {
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 toast.error()
@@ -161,6 +189,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         })
     }
+
     fun updateUser(updateUser: User) {
         UserUtil().getUser().updateProfile(updateUser)
             .enqueue(object : Callback<User> {
