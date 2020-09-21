@@ -146,14 +146,14 @@ class BusListAdapter(private val list:List<Bus>) : RecyclerView.Adapter<BusListV
     }
     fun setHeightUp(view: View){
         val anim =
-            ValueAnimator.ofInt(view.measuredHeight, -140)
+            ValueAnimator.ofInt(view.measuredHeight, -100)
         anim.addUpdateListener { valueAnimator ->
             val value = valueAnimator.animatedValue as Int
             val layoutParams: ViewGroup.LayoutParams = view.layoutParams
             layoutParams.height = value
             view.layoutParams=layoutParams
         }
-        anim.duration = 500
+        anim.duration = 750
         anim.start()
     }
 }
