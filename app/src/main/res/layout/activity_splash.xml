@@ -16,7 +16,7 @@
         android:layout_height="400dp"
         android:contentDescription="@string/app_name"
         android:padding="32dp"
-        android:src="@drawable/splash_screen" />
+        android:src="@drawable/pict_splash_screen" />
 
     <ProgressBar
         android:id="@+id/indicator_splash"
