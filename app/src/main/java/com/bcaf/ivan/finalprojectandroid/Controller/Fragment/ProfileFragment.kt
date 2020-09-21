@@ -30,11 +30,13 @@ class ProfileFragment : Fragment() {
     lateinit var sessionManager:SessionManager
     lateinit var toast:ToastMessage
     lateinit var fieldChecker: FieldChecker
+    lateinit var userUtil: UserUtil
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sessionManager= SessionManager(context!!)
         toast= ToastMessage(context!!)
         fieldChecker= FieldChecker()
+        userUtil= UserUtil()
         getProfile()
     }
     fun createTextChangeListener(){
@@ -73,6 +75,7 @@ class ProfileFragment : Fragment() {
                 inp_profile_firstName.setText(user!!.firstName)
                 inp_profile_lastName.setText(user!!.lastName)
                 inp_profile_mobileNumber.setText(user!!.mobileNumber)
+                inp_profile_email.setText(user!!.email)
 
                 createTextChangeListener()
             }
@@ -82,7 +85,5 @@ class ProfileFragment : Fragment() {
             }
 
         })
-    }
-    fun saveChangeProfileData(view: View){
     }
 }

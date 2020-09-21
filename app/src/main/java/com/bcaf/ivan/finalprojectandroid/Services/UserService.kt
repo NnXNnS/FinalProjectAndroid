@@ -18,6 +18,9 @@ interface UserService {
     @POST("user/checkEmailUserByUser")
     fun checkEmail(@Body userParam:User):Call<ResponseBody>
 
+    @POST("user/updateUser")
+    fun updateProfile(@Body user:User):Call<User>
+
     @Multipart
     @POST("user/getUserById")
     fun getUser(@Part("userId") userId:RequestBody):Call<User>

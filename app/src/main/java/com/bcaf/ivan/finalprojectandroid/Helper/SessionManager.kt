@@ -22,23 +22,41 @@ class SessionManager {
 
     // endregion
     fun setSession(rs: String) {
-        val jwt = JWT(rs)
-        val getClaims = jwt.claims
-        val token = getClaims["iss"]!!.asString()
-        prefs
-        with(prefs.edit()) {
-            try {
-                putString(
-                    "Token",
-                    gson.toJson(gson.fromJson(token, TokenResult::class.java))
-                )
-            } catch (e: Exception) {
-                putString(
-                    "Token",
-                    gson.toJson(TokenResult())
-                )
+        if(rs!="error") {
+            val jwt = JWT(rs)
+            val getClaims = jwt.claims
+            val token = getClaims["iss"]!!.asString()
+            prefs
+            with(prefs.edit()) {
+                try {
+                    putString(
+                        "Token",
+                        gson.toJson(gson.fromJson(token, TokenResult::class.java))
+                    )
+                } catch (e: Exception) {
+                    putString(
+                        "Token",
+                        gson.toJson(TokenResult())
+                    )
+                }
+                commit()
             }
-            commit()
+        }else{
+            prefs
+            with(prefs.edit()) {
+                try {
+                    putString(
+                        "Token",
+                        gson.toJson(TokenResult())
+                    )
+                } catch (e: Exception) {
+                    putString(
+                        "Token",
+                        gson.toJson(TokenResult())
+                    )
+                }
+                commit()
+            }
         }
     }
 

@@ -20,5 +20,8 @@ class ToastMessage(val context: Context) {
     fun error(duration: Int = Toast.LENGTH_SHORT) {
         Toast.makeText(context,context.getString(R.string.error),duration).show()
     }
+    fun passwordNotMatch(duration: Int = Toast.LENGTH_SHORT) {
+        Toast.makeText(context,context.getString(R.string.password_not_match),duration).show()
+    }
 
 }
