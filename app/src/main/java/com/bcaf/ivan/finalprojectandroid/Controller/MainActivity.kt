@@ -2,14 +2,18 @@ package com.bcaf.ivan.finalprojectandroid.Controller
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.res.Resources
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.bcaf.ivan.finalprojectandroid.Controller.Fragment.AgencyFragment
 import com.bcaf.ivan.finalprojectandroid.Controller.Fragment.BusFragment
@@ -86,7 +90,10 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     private fun showDialog() {
         var alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
-        alertDialogBuilder.setMessage("Are you sure,You wanted to logout?")
+        alertDialogBuilder.setTitle("Logout?")
+        alertDialogBuilder.setMessage("Your work will be automatically saved")
+        alertDialogBuilder.setIcon(ResourcesCompat.getDrawable(resources,
+            R.drawable.ic_question_mark, null))
         alertDialogBuilder.setPositiveButton("Yes") { _: DialogInterface, i: Int ->
             sessionManager.removeSession()
             activity.startAndDestroy(LoginActivity::class.java)
@@ -98,6 +105,12 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         var alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+
+        var nButton: Button = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE)
+        nButton.setTextColor(Color.rgb(0, 165, 255))
+
+        var pButton: Button = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE)
+        pButton.setTextColor(Color.rgb(0, 165, 255))
     }
 
     fun saveChangeAgencyData(view: View) {
