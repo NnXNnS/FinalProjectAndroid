@@ -21,9 +21,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentTop="true"
+                    android:baselineAligned="false"
                     android:weightSum="1">
 
-                    <LinearLayout
+                    <FrameLayout
                         style="@style/parent"
                         android:layout_gravity="center|bottom"
                         android:layout_weight="0.25"
@@ -34,7 +35,19 @@
                             style="@style/parent"
                             android:background="@drawable/ic_login_bk"
                             android:contentDescription="Login Background" />
-                    </LinearLayout>
+
+                        <ToggleButton
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:id="@+id/btn_logout"
+                            android:background="@drawable/ic_logout"
+                            android:backgroundTint="@android:color/white"
+                            android:textOn=" "
+                            android:textOff=" "
+                            android:layout_gravity="end"
+                            android:layout_margin="10dp"
+                            android:onClick="showDialog"/>
+                    </FrameLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -45,6 +58,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="30dp"
                     android:orientation="vertical">
+
                     <androidx.cardview.widget.CardView
                         style="@style/loginCard"
                         android:layout_gravity="center"
@@ -60,14 +74,21 @@
                             android:layout_gravity="center"
                             android:padding="@dimen/loginViewsMargin">
 
-                            <TextView
-                                style="@style/headerTextPrimary"
-                                android:text="Welcome" />
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/headerTextPrimary"
+                                    android:layout_gravity="center"
+                                    android:text="Welcome" />
+                            </FrameLayout>
 
                             <TextView
-                                style="@style/headerTextPrimary"
                                 android:id="@+id/txt_profile_name"
+                                style="@style/headerTextPrimary"
                                 android:text="Name" />
+
                             <ImageView
                                 android:id="@+id/img_homeImage"
                                 android:layout_width="match_parent"
@@ -149,11 +170,11 @@
                             </com.google.android.material.textfield.TextInputLayout>
 
                             <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/til_profile_repassword"
                                 style="@style/inputLayoutBox"
                                 android:layout_marginTop="@dimen/loginViewsMargin"
-                                app:hintTextAppearance="@style/inputLayoutBoxHint"
-                                android:id="@+id/til_profile_repassword"
-                                android:visibility="gone">
+                                android:visibility="gone"
+                                app:hintTextAppearance="@style/inputLayoutBoxHint">
 
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/inp_profile_repassword"
@@ -163,12 +184,13 @@
                                     android:maxLines="1"
                                     android:textCursorDrawable="@drawable/cursor_color" />
                             </com.google.android.material.textfield.TextInputLayout>
+
                             <Button
                                 style="@style/loginButton"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="@dimen/loginViewsMargin"
                                 android:onClick="saveChangeProfileData"
-                                android:text="Save"/>
+                                android:text="Save" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>

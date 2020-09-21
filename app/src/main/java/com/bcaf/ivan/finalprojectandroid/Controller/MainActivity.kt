@@ -88,6 +88,10 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         return loadfragment(fragment)
     }
 
+    private fun showDialog(view: View) {
+        showDialog()
+    }
+
     private fun showDialog() {
         var alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
         alertDialogBuilder.setTitle("Logout?")
