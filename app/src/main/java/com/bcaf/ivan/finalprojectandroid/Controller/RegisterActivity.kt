@@ -68,7 +68,7 @@ class RegisterActivity : AppCompatActivity() {
                     message.emailNotValid()
                 }
             } else {
-                message.custom("Password does not match!")
+                message.passwordNotMatch()
             }
         }
     }

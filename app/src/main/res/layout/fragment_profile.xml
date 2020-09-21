@@ -122,6 +122,20 @@
                             <com.google.android.material.textfield.TextInputLayout
                                 style="@style/inputLayoutBox"
                                 android:layout_marginTop="@dimen/loginViewsMargin"
+                                app:hintTextAppearance="@style/inputLayoutBoxHint">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/inp_profile_email"
+                                    style="@style/modifiedEditText"
+                                    android:hint="Email"
+                                    android:inputType="textEmailAddress"
+                                    android:maxLines="1"
+                                    android:textCursorDrawable="@drawable/cursor_color" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/inputLayoutBox"
+                                android:layout_marginTop="@dimen/loginViewsMargin"
                                 app:hintTextAppearance="@style/inputLayoutBoxHint"
                                 app:passwordToggleEnabled="true">
 

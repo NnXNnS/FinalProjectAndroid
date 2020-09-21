@@ -2,6 +2,7 @@ package com.bcaf.ivan.finalprojectandroid.Helper
 
 import android.text.Editable
 import android.widget.EditText
+import com.google.android.material.textfield.TextInputEditText
 
 class FieldChecker {
     fun emailValidation(email: String): Boolean {
@@ -14,6 +15,11 @@ class FieldChecker {
         }).isNotEmpty()
     }
 
+    fun fieldNull(vararg text: TextInputEditText): Boolean {
+        return text.filter(fun(it: TextInputEditText): Boolean {
+            return it.text.toString() == ""
+        }).isNotEmpty()
+    }
     fun checkPassword(pass: String, rePass: String): Boolean {
         return pass == rePass
     }

@@ -22,7 +22,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var sessionManager: SessionManager
     lateinit var fieldChecker: FieldChecker
     lateinit var message: ToastMessage
-    lateinit var activity:CustomActivity
+    lateinit var activity: CustomActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
         sessionManager = SessionManager(applicationContext)
         fieldChecker = FieldChecker()
         message = ToastMessage(applicationContext)
-        activity= CustomActivity(this)
+        activity = CustomActivity(this)
     }
 
     // region login click
@@ -72,9 +72,10 @@ class LoginActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<String>, response: Response<String>) {
                     var rs = response.body()!!.toString()
                     sessionManager.setSession(rs)
-                    if (fieldChecker.fieldNull(sessionManager.getSession().userId.trim()))
+                    if (fieldChecker.fieldNull(sessionManager.getSession().userId.trim())) {
                         sessionManager.removeSession()
-                    else
+                        message.custom("Wrong email or password!")
+                    } else
                         activity.startAndDestroy(MainActivity::class.java)
 
                 }
