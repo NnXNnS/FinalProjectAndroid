@@ -134,7 +134,7 @@ class BusListAdapter(private val list:List<Bus>) : RecyclerView.Adapter<BusListV
     }
     fun setHeightDown(view: View){
         val anim =
-            ValueAnimator.ofInt(view.measuredHeight, 100)
+            ValueAnimator.ofInt(view.measuredHeight, 150)
         anim.addUpdateListener { valueAnimator ->
             val value = valueAnimator.animatedValue as Int
             val layoutParams: ViewGroup.LayoutParams = view.layoutParams
