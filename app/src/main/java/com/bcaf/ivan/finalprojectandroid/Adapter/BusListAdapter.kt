@@ -1,5 +1,6 @@
 package com.bcaf.ivan.finalprojectandroid.Adapter
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -33,7 +34,7 @@ class BusListAdapter(private val list:List<Bus>) : RecyclerView.Adapter<BusListV
         holder.busMake.text = list[position].make
         holder.busCapacity.text = list[position].capacity
         holder.btn_expand.setOnClickListener { view ->
-            if(holder.lyt_detail.visibility==View.GONE){
+            if(holder.lyt_detail.visibility==View.INVISIBLE){
                 rotateImageUp(holder.btn_expand)
                 slideDown(holder.lyt_detail)
 //                holder.lyt_detail.visibility = View.VISIBLE
@@ -99,10 +100,11 @@ class BusListAdapter(private val list:List<Bus>) : RecyclerView.Adapter<BusListV
             }
 
             override fun onAnimationEnd(p0: Animation?) {
-                view.visibility = View.GONE
+                view.visibility = View.INVISIBLE
             }
 
             override fun onAnimationStart(p0: Animation?) {
+                setHeightUp(view)
             }
 
         });
@@ -118,14 +120,40 @@ class BusListAdapter(private val list:List<Bus>) : RecyclerView.Adapter<BusListV
             }
 
             override fun onAnimationEnd(p0: Animation?) {
+                var lyParam = view.layoutParams
+                lyParam.height=ViewGroup.LayoutParams.WRAP_CONTENT
             }
 
             override fun onAnimationStart(p0: Animation?) {
                 view.visibility = View.VISIBLE
+                setHeightDown(view)
             }
 
         });
         view.startAnimation(animSlideDown)
     }
-
+    fun setHeightDown(view: View){
+        val anim =
+            ValueAnimator.ofInt(view.measuredHeight, 100)
+        anim.addUpdateListener { valueAnimator ->
+            val value = valueAnimator.animatedValue as Int
+            val layoutParams: ViewGroup.LayoutParams = view.layoutParams
+            layoutParams.height = value
+            view.layoutParams=layoutParams
+        }
+        anim.duration = 500
+        anim.start()
+    }
+    fun setHeightUp(view: View){
+        val anim =
+            ValueAnimator.ofInt(view.measuredHeight, -140)
+        anim.addUpdateListener { valueAnimator ->
+            val value = valueAnimator.animatedValue as Int
+            val layoutParams: ViewGroup.LayoutParams = view.layoutParams
+            layoutParams.height = value
+            view.layoutParams=layoutParams
+        }
+        anim.duration = 500
+        anim.start()
+    }
 }
