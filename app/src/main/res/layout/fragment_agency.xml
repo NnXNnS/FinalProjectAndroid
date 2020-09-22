@@ -111,8 +111,9 @@
                         <Button
                             style="@style/loginButton"
                             android:layout_gravity="center"
+                            android:id="@+id/btn_agency_save"
                             android:layout_marginTop="@dimen/loginViewsMargin"
-                            android:onClick="saveChangeAgencyData"
+                            android:onClick="onClickFunction"
                             android:text="Save" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

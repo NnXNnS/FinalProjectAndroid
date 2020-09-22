@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     override fun onBackPressed() {
-        showDialog()
+        showDialogFun()
     }
 
     fun loadfragment(fragment: Fragment): Boolean {
@@ -88,11 +88,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         return loadfragment(fragment)
     }
 
-    private fun showDialog(view: View) {
-        showDialog()
-    }
-
-    private fun showDialog() {
+    private fun showDialogFun() {
         var alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
         alertDialogBuilder.setTitle("Logout?")
         alertDialogBuilder.setMessage("Your work will be automatically saved")
@@ -117,7 +113,16 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         pButton.setTextColor(Color.rgb(0, 165, 255))
     }
 
-    fun saveChangeAgencyData(view: View) {
+    fun onClickFunction(view: View) {
+        when (view.id)
+        {
+            R.id.btn_logout ->showDialogFun()
+            R.id.btn_agency_save->saveDataAgency()
+            R.id.btn_profile_save->saveChangeProfileData()
+            else->showDialogFun()
+        }
+    }
+    fun saveDataAgency(){
         if (!fieldChecker.fieldNull(inp_agency_name, inp_agency_details)) {
             var agency = Agency()
             agency.name = inp_agency_name.text.toString()
@@ -140,8 +145,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             toast.nullField()
         }
     }
-
-    fun saveChangeProfileData(view: View) {
+    fun saveChangeProfileData() {
         var updateUser = User()
         var boolUser = false
         var boolPassword = false

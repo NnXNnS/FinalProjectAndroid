@@ -46,7 +46,7 @@
                             android:textOff=" "
                             android:layout_gravity="end"
                             android:layout_margin="10dp"
-                            android:onClick="showDialog"/>
+                            android:onClick="onClickFunction"/>
                     </FrameLayout>
                 </LinearLayout>
 
@@ -187,9 +187,10 @@
 
                             <Button
                                 style="@style/loginButton"
+                                android:id="@+id/btn_profile_save"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="@dimen/loginViewsMargin"
-                                android:onClick="saveChangeProfileData"
+                                android:onClick="onClickFunction"
                                 android:text="Save" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
